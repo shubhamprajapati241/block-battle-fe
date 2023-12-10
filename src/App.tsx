@@ -24,7 +24,7 @@ import GameResetBtn from "./components/GameResetBtn";
 import checkForCollision from "./utils/checkForCollision";
 import Level3 from "./levels/Level3";
 import Camera from "./components/Camera";
-import Decentralization from "./levels/Level1";
+import ConnectButton from "./components/ConnectButton";
 
 // General Game Context
 export const GameContext = createContext<any>(null);
@@ -81,7 +81,7 @@ function App() {
 
   useEffect(() => {
     gameRef.current = game;
-  }, [game.playerPosition, game.isGameOver, level.current]);
+  }, [game.playerPosition, game.isGameOver, level.current, game.metamaskDetails,]);
 
   function loop() {
     const currentLevel: number = level.ref.current;
@@ -112,6 +112,9 @@ function App() {
     loopRef.current = requestAnimationFrame(loop);
   }
 
+    // Set metamask details
+    const account = game.metamaskDetails;
+
   useEffect(() => {
     loopRef.current = requestAnimationFrame(loop);
     return () => {
@@ -121,29 +124,33 @@ function App() {
 
   return (
     <GameContext.Provider value={game}>
-      <Game>
-        <Mario mario={gameObjects.mario} gravity={gravity.ref.current} />
-        <Sky sky={gameObjects.sky} />
-        <Camera camera={gameObjects.camera} style={{}}>
-          <WinFlag winFlag={gameObjects.winFlag} />
-          <Ground ground={gameObjects.ground} />
+      {account.currentAccount ? (
+        <Game>
+          <Mario mario={gameObjects.mario} gravity={gravity.ref.current} />
+          <Sky sky={gameObjects.sky} />
+          <Camera camera={gameObjects.camera} style={{}}>
+            <WinFlag winFlag={gameObjects.winFlag} />
+            <Ground ground={gameObjects.ground} />
 
-          <WatchOut />
-          <Level1 level={level} gameObjects={gameObjects} />
-          <Level2 level={level} gameObjects={gameObjects} />
-          <Level3 level={level} gameObjects={gameObjects} />
-        </Camera>
+            <WatchOut />
+            <Level1 level={level} gameObjects={gameObjects} />
+            <Level2 level={level} gameObjects={gameObjects} />
+            <Level3 level={level} gameObjects={gameObjects} />
+          </Camera>
 
-        <GameResetBtn />
-        <GameOver />
-        <GameWon level={level} totalLevels={totalLevels} />
-        <div className="absolute z-50 p-8">
-          {level.current == 1 && "Decentralize "}
-          {level.current == 2 && "Secure "}
-          {level.current == 3 && "Scale "}
-          {level.current}/{totalLevels}
-        </div>
-      </Game>
+          <GameResetBtn />
+          <GameOver />
+          <GameWon level={level} totalLevels={totalLevels} />
+          <div className="absolute z-50 p-8">
+            {level.current == 1 && "Decentralize "}
+            {level.current == 2 && "Secure "}
+            {level.current == 3 && "Scale "}
+            {level.current}/{totalLevels}
+          </div>
+        </Game>
+      ) : (
+        <ConnectButton />
+      )}
     </GameContext.Provider>
   );
 }

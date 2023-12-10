@@ -14,16 +14,25 @@ export default function GameWon({
 }: GameWonProps): JSX.Element {
   const game: UseGameContextInterface = useContext(GameContext);
 
-  function gotoNextLevel(): void {
-    level.next();
-    game.resetGame();
+  async function gotoNextLevel(): Promise<any> {
+    console.log("level.current : " + level.current);
+    const result = await game.setLevel(level.current);
+    console.log(result);
+    if (result.status == 200) {
+      console.log("Congrats, You completd level " + level.current);
+      level.next();
+      game.resetGame();
+    }
   }
 
-  function resetGame(): void {
-    level.reset();
-    game.resetGame();
+  async function resetGame(): Promise<any> {
+    const result = await game.setLevel(0);
+    console.log(result);
+    if (result.status == 200) {
+      console.log("Congrats, You completd level " + level.current);
+      level.reset();
+    }
   }
-
   if (game.isGameWon) {
     return (
       <>
