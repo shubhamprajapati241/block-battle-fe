@@ -17,6 +17,16 @@ export interface UseGameObjects {
     level2: gameObject[];
     [key: string]: gameObject[];
   };
+  goombas1: {
+    level1: gameObject[];
+    level2: gameObject[];
+    [key: string]: gameObject[];
+  };
+  goombas2: {
+    level1: gameObject[];
+    level3: gameObject[];
+    [key: string]: gameObject[];
+  };
   giantGoombas: {
     level2: gameObject[];
     [key: string]: gameObject[];
@@ -97,6 +107,69 @@ export default function useGameObjects(): UseGameObjects {
       useRef() as gameObject,
     ],
   };
+  const goombas1 = {
+    level1: [
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+    ],
+
+    level2: [
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+    ],
+  };
+  const goombas2 = {
+    level1: [
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+    ],
+
+    level3: [
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+      useRef() as gameObject,
+    ],
+  };
+
 
   const giantGoombas = {
     level2: [useRef() as gameObject],
@@ -116,6 +189,8 @@ export default function useGameObjects(): UseGameObjects {
     mario,
     camera,
     goombas,
+    goombas1,
+    goombas2,
     giantGoombas,
     bulletBill,
     winFlag,

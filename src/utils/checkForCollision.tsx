@@ -26,6 +26,18 @@ export default function checkForCollision({
             game.endGame()
         }
     })
+    const currentLevelGoombas1: gameObject[] = gameObjects.goombas1[currentLevel]
+    currentLevelGoombas1?.forEach( goomba1 => {
+        if( isCollide( goomba1.current, mario ) ) {
+            game.endGame()
+        }
+    })
+    const currentLevelGoombas2: gameObject[] = gameObjects.goombas2[currentLevel]
+    currentLevelGoombas2?.forEach( goomba2 => {
+        if( isCollide( goomba2.current, mario ) ) {
+            game.endGame()
+        }
+    })
 
     // Check for Giant Goomba collision
     const currentLevelGiantGoombas : gameObject[] = gameObjects.giantGoombas[currentLevel]

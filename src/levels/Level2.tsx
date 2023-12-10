@@ -1,5 +1,5 @@
-import GiantGoomba from "../components/GiantGoomba";
-import Goomba from "../components/Goomba";
+
+import Securitymonster from "../components/Securitymonster"
 import Platform from "../components/Platform";
 import { LevelProps } from "./Level";
 
@@ -7,7 +7,7 @@ export default function Level2({
   gameObjects,
   level,
 }: LevelProps): JSX.Element {
-  const { platforms, goombas, giantGoombas } = gameObjects;
+  const { platforms, goombas1} = gameObjects;
 
   return level.current === 2 ? (
     <>
@@ -34,11 +34,13 @@ export default function Level2({
       />
       <Platform platform={platforms.level2[5].ref} x={6000} y={250} />
 
-      {/* <Goomba goomba={goombas.level2[0]} id="1" x={600} /> */}
+     
 
-      <Goomba goomba={goombas.level2[4]} id="2" x={700} />
+      <Securitymonster goomba1={goombas1.level2[4]} id="1" x={700} />
+      <Securitymonster goomba1={goombas1.level2[5]} id="2" x={1000} />
 
-      <GiantGoomba giantGoomba={giantGoombas.level2[0]} x={1500} />
+
+      
     </>
   ) : (
     <></>
